@@ -1,45 +1,45 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-// ÇÔ¼ö ¼±¾ğ
-void getInput(float* num1, float* num2, char* operator); //»ç¿ëÀÚ¿¡°Ô¼­ µÎ ¼ıÀÚ¿Í ¿¬»êÀÚ¸¦ ÀÔ·Â ¹ŞÀ½.
-float calculate(float num1, float num2, char operator, int* status);//status (0:ÀÛµ¿, 1:¿¡·¯)
-void printResult(float result, int status); //°á°ú³ª ¿¡·¯¸Ş¼¼Áö Ãâ·Â
+// í•¨ìˆ˜ ì„ ì–¸
+void getInput(float* num1, float* num2, char* operator); //ì‚¬ìš©ìì—ê²Œì„œ ë‘ ìˆ«ìì™€ ì—°ì‚°ìë¥¼ ì…ë ¥ ë°›ìŒ.
+float calculate(float num1, float num2, char operator, int* status);//status (0:ì‘ë™, 1:ì—ëŸ¬)
+void printResult(float result, int status); //ê²°ê³¼ë‚˜ ì—ëŸ¬ë©”ì„¸ì§€ ì¶œë ¥
 
 int main() {
-    float num1, num2, result;  // ÀÔ·Â¹ŞÀº ¼ıÀÚ,°á°ú ÀúÀåÇÒ º¯¼ö
-    char operator;             // ¿¬»êÀÚ ÀúÀå º¯¼ö
-    int status = 0;            // »óÅÂ ÀúÀå (0:ÀÛµ¿, 1:¿¡·¯)
+    float num1, num2, result;  // ì…ë ¥ë°›ì€ ìˆ«ì,ê²°ê³¼ ì €ì¥í•  ë³€ìˆ˜
+    char operator;             // ì—°ì‚°ì ì €ì¥ ë³€ìˆ˜
+    int status = 0;            // ìƒíƒœ ì €ì¥ (0:ì‘ë™, 1:ì—ëŸ¬)
 
-    //ÀÔ·Â¹Ş±â getInput ÇÔ¼ö È£Ãâ - °¢°¢ÀÇ °ªÀÇ ÁÖ¼Ò Àü´ŞÇØ¼­ ÇÔ¼ö¿¡¼­ °ªÀ» ÀúÀåÇÏ°Ô²û
+    //ì…ë ¥ë°›ê¸° getInput í•¨ìˆ˜ í˜¸ì¶œ - ê°ê°ì˜ ê°’ì˜ ì£¼ì†Œ ì „ë‹¬í•´ì„œ í•¨ìˆ˜ì—ì„œ ê°’ì„ ì €ì¥í•˜ê²Œë”
     getInput(&num1, &num2, &operator);
 
-    //°è»êÇÏ±â calculate ÇÔ¼ö È£Ãâ - ÀÔ·ÂµÈ ¼ıÀÚ, ¿¬»êÀÚ ±â¹İÀ¸·Î °á°ú °è»ê ÈÄ »óÅÂ ¾÷µ¥ÀÌÆ®
+    //ê³„ì‚°í•˜ê¸° calculate í•¨ìˆ˜ í˜¸ì¶œ - ì…ë ¥ëœ ìˆ«ì, ì—°ì‚°ì ê¸°ë°˜ìœ¼ë¡œ ê²°ê³¼ ê³„ì‚° í›„ ìƒíƒœ ì—…ë°ì´íŠ¸
     result = calculate(num1, num2, operator, &status);
 
-    //°á°ú Ãâ·Â printresult ÇÔ¼ö È£Ãâ - °è»ê °á°ú Ãâ·Â
+    //ê²°ê³¼ ì¶œë ¥ printresult í•¨ìˆ˜ í˜¸ì¶œ - ê³„ì‚° ê²°ê³¼ ì¶œë ¥
     printResult(result, status);
     return 0;
 }
 
-// »ç¿ëÀÚ¿¡°Ô¼­ ÀÔ·Â¹Ş´Â ÇÔ¼ö
+// ì‚¬ìš©ìì—ê²Œì„œ ì…ë ¥ë°›ëŠ” í•¨ìˆ˜
 void getInput(float* num1, float* num2, char* operator) {
     printf("Enter the first number: ");
-    scanf("%f", num1);  // Ã¹¹øÂ° ¼ıÀÚ ÀÔ·Â¹Ş±â
+    scanf("%f", num1);  // ì²«ë²ˆì§¸ ìˆ«ì ì…ë ¥ë°›ê¸°
 
     printf("Enter the second number: ");
-    scanf("%f", num2);  // µÎ¹øÂ° ¼ıÀÚ ÀÔ·Â¹Ş±â
+    scanf("%f", num2);  // ë‘ë²ˆì§¸ ìˆ«ì ì…ë ¥ë°›ê¸°
 
     printf("Enter an operator (+, -, *, /): ");
-    scanf(" %c", operator);  // ¿¬»êÀÚ ÀÔ·Â¹Ş±â (°ø¹éÀ¸·Î ¹öÆÛ Á¤¸®)
+    scanf(" %c", operator);  // ì—°ì‚°ì ì…ë ¥ë°›ê¸° (ê³µë°±ìœ¼ë¡œ ë²„í¼ ì •ë¦¬)
 }
 
-// °è»ê ¼öÇàÇÏ´Â ÇÔ¼ö , status 0:Á¤»ó, 1:ºñÁ¤»ó
-// result=°á°ú ÀúÀå, status=°è»ê »óÅÂ ÀúÀå
+// ê³„ì‚° ìˆ˜í–‰í•˜ëŠ” í•¨ìˆ˜ , status 0:ì •ìƒ, 1:ë¹„ì •ìƒ
+// result=ê²°ê³¼ ì €ì¥, status=ê³„ì‚° ìƒíƒœ ì €ì¥
 float calculate(float num1, float num2, char operator, int* status) {
-    float result = 0; //°á°ú ÀúÀå º¯¼ö ÃÊ±âÈ­, ÃÊ±â°ª 0 ¼³Á¤
+    float result = 0; //ê²°ê³¼ ì €ì¥ ë³€ìˆ˜ ì´ˆê¸°í™”, ì´ˆê¸°ê°’ 0 ì„¤ì •
 
-    //operator °ª(+,-,/,*)¿¡ µû¶ó ½ÇÇàÇÒ ¿¬»ê ¼±ÅÃ
+    //operator ê°’(+,-,/,*)ì— ë”°ë¼ ì‹¤í–‰í•  ì—°ì‚° ì„ íƒ
     switch (operator) {
     case '+':
         result = num1 + num2;
@@ -55,22 +55,22 @@ float calculate(float num1, float num2, char operator, int* status) {
             result = num1 / num2;
         }
         else {
-            *status = 1;  //num2=0ÀÌ¸é ³ª´°¼À ºÒ°¡,status=1·Î ºñÁ¤»ó »óÅÂ Ç¥½Ã
+            *status = 1;  //num2=0ì´ë©´ ë‚˜ëˆ—ì…ˆ ë¶ˆê°€,status=1ë¡œ ë¹„ì •ìƒ ìƒíƒœ í‘œì‹œ
         }
         break;
     default:
-        *status = 1;  // operator°¡ +,-,*,/ ¾Æ´Ò °æ¿ì status=1·Î ºñÁ¤»ó Ç¥½Ã
+        *status = 1;  // operatorê°€ +,-,*,/ ì•„ë‹ ê²½ìš° status=1ë¡œ ë¹„ì •ìƒ í‘œì‹œ
     }
 
-    return result; //°è»ê °á°ú ¹İÈ¯
+    return result; //ê³„ì‚° ê²°ê³¼ ë°˜í™˜
 }
 
-// °á°ú Ãâ·Â or ¿¡·¯ ¸Ş¼¼Áö Ç¥½Ã ÇÔ¼ö
+// ê²°ê³¼ ì¶œë ¥ or ì—ëŸ¬ ë©”ì„¸ì§€ í‘œì‹œ í•¨ìˆ˜
 void printResult(float result, int status) {
     if (status == 0) {
-        printf("Result: %.2f\n", result);
-    } //status=0 Á¤»ó °æ¿ì, °á°ú Ãâ·Â 
+        printf("Result: %.2f\n", result); //ì‹¤ìˆ˜ë¥¼ ì†Œìˆ˜ì  ë‘ìë¦¬ê¹Œì§€ ì¶œë ¥
+    } //status=0 ì •ìƒ ê²½ìš°, ê²°ê³¼ ì¶œë ¥ 
     else {
         printf("Error: Invalid operation or division by zero.\n");
-    } //status=1 ºñÁ¤»ó °æ¿ì, ¿¡·¯ ¸Ş¼¼Áö Ãâ·Â 
+    } //status=1 ë¹„ì •ìƒ ê²½ìš°, ì—ëŸ¬ ë©”ì„¸ì§€ ì¶œë ¥ 
 }
